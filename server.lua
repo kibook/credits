@@ -1,21 +1,23 @@
 local resources = {}
 
-local function getResourceList()
-	local list = {}
+local function getResourceInfo()
+	local info = {}
 
 	for _, resource in pairs(resources) do
-		table.insert(list, resource)
+		table.insert(info, resource)
 	end
 
-	table.sort(list, function(a, b)
+	table.sort(info, function(a, b)
 		local name1 = string.lower(a.name or a.resourceName)
 		local name2 = string.lower(b.name or b.resourceName)
 
 		return name1 < name2
 	end)
 
-	return list
+	return info
 end
+
+exports("getResourceInfo", getResourceInfo)
 
 AddEventHandler("onResourceStart", function(resourceName)
 	local resourceInfo = {}
@@ -34,5 +36,5 @@ AddEventHandler("onResourceStop", function(resourceName)
 end)
 
 RegisterCommand("credits", function(source)
-	TriggerClientEvent("credits", source, getResourceList())
+	TriggerClientEvent("credits", source, getResourceInfo())
 end, true)
