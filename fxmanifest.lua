@@ -5,6 +5,14 @@ name "credits"
 author "kibukj"
 description "Displays information about resources on a FiveM or RedM server"
 
+files {
+	"ui/index.html",
+	"ui/style.css",
+	"ui/script.js"
+}
+
+ui_page "ui/index.html"
+
 server_scripts {
 	"config.lua",
 	"server.lua"

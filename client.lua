@@ -1,3 +1,5 @@
+local creditsAreOpen = false
+
 RegisterNetEvent("credits")
 
 local function printToConsole(resources)
@@ -20,5 +22,16 @@ local function printToConsole(resources)
 end
 
 AddEventHandler("credits", function(resources)
-	printToConsole(resources)
+	creditsAreOpen = not creditsAreOpen
+
+	if creditsAreOpen then
+		SendNUIMessage({
+			type = "show",
+			resourceInfo = resources
+		})
+	else
+		SendNUIMessage({
+			type = "hide"
+		})
+	end
 end)
