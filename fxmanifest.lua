@@ -1,7 +1,7 @@
 fx_version "cerulean"
 game "common"
 
-name "Credits"
+name "credits"
 author "kibukj"
 description "Displays information about resources on a FiveM or RedM server"
 
