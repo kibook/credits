@@ -1,5 +1,3 @@
-local creditsAreOpen = false
-
 RegisterNetEvent("credits")
 
 local function printToConsole(resources)
@@ -22,16 +20,14 @@ local function printToConsole(resources)
 end
 
 AddEventHandler("credits", function(resources)
-	creditsAreOpen = not creditsAreOpen
+	SendNUIMessage({
+		type = "show",
+		resourceInfo = resources
+	})
+	SetNuiFocus(true, true)
+end)
 
-	if creditsAreOpen then
-		SendNUIMessage({
-			type = "show",
-			resourceInfo = resources
-		})
-	else
-		SendNUIMessage({
-			type = "hide"
-		})
-	end
+RegisterNUICallback("close", function(data, cb)
+	SetNuiFocus(false, false)
+	cb{}
 end)

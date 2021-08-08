@@ -1,10 +1,20 @@
-local resources = {}
-
 local function getResourceInfo()
 	local info = {}
 
-	for _, resource in pairs(resources) do
-		table.insert(info, resource)
+	for i = 0, GetNumResources() - 1 do
+		local resourceName = GetResourceByFindIndex(i)
+
+		if resourceName ~= GetCurrentResourceName() and GetResourceState(resourceName) == "started" then
+			local resourceInfo = {}
+
+			resourceInfo.resourceName = resourceName
+
+			for _, metadataName in ipairs(Config.metadataNames) do
+				resourceInfo[metadataName] = GetResourceMetadata(resourceName, metadataName, 0)
+			end
+
+			table.insert(info, resourceInfo)
+		end
 	end
 
 	table.sort(info, function(a, b)
@@ -18,22 +28,6 @@ local function getResourceInfo()
 end
 
 exports("getResourceInfo", getResourceInfo)
-
-AddEventHandler("onResourceStart", function(resourceName)
-	local resourceInfo = {}
-
-	resourceInfo.resourceName = resourceName
-
-	for _, metadataName in ipairs(Config.metadataNames) do
-		resourceInfo[metadataName] = GetResourceMetadata(resourceName, metadataName, 0)
-	end
-
-	resources[resourceName] = resourceInfo
-end)
-
-AddEventHandler("onResourceStop", function(resourceName)
-	resources[resourceName] = nil
-end)
 
 RegisterCommand("credits", function(source)
 	TriggerClientEvent("credits", source, getResourceInfo())

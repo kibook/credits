@@ -5,5 +5,7 @@ Config.metadataNames = {
 	"author",
 	"description",
 	"name",
+	"repository",
+	"url",
 	"version"
 }
