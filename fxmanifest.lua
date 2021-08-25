@@ -4,6 +4,7 @@ game "common"
 name "credits"
 author "kibukj"
 description "Displays information about resources on a FiveM or RedM server"
+repository "https://github.com/kibook/credits"
 
 files {
 	"ui/index.html",
