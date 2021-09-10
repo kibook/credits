@@ -37,8 +37,37 @@ local function getResourceInfo()
 	return info
 end
 
+local function printToConsole(resources)
+	print("Resources:")
+	for _, resource in ipairs(resources) do
+		local name = resource.name or resource.resourceName
+
+		local info = "- " .. name
+
+		if resource.version then
+			info = info .. " v." .. resource.version
+		end
+
+		if resource.author then
+			if type(resource.author) == "table" then
+				info = info .. " by " .. table.concat(resource.author, ", ")
+			else
+				info = info .. " by " .. resource.author
+			end
+		end
+
+		print(info)
+	end
+end
+
 exports("getResourceInfo", getResourceInfo)
 
 RegisterCommand("credits", function(source)
-	TriggerClientEvent("credits", source, getResourceInfo())
+	local resources = getResourceInfo()
+
+	if source == 0 then
+		printToConsole(resources)
+	else
+		TriggerClientEvent("credits", source, resources)
+	end
 end, true)
