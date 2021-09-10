@@ -49,7 +49,11 @@ function showCredits(resourceInfo) {
 		}
 
 		if (resource.author) {
-			div.innerHTML += ` by ${resource.author}`;
+			if (Array.isArray(resource.author)) {
+				div.innerHTML += ` by ${resource.author.join(", ")}`;
+			} else {
+				div.innerHTML += ` by ${resource.author}`;
+			}
 		}
 
 		let linkDiv = document.createElement("div");

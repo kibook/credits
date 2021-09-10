@@ -10,7 +10,17 @@ local function getResourceInfo()
 			resourceInfo.resourceName = resourceName
 
 			for _, metadataName in ipairs(Config.metadataNames) do
-				resourceInfo[metadataName] = GetResourceMetadata(resourceName, metadataName, 0)
+				local values = {}
+
+				for i = 0, GetNumResourceMetadata(resourceName, metadataName) - 1 do
+					table.insert(values, GetResourceMetadata(resourceName, metadataName, i))
+				end
+
+				if #values < 2 then
+					resourceInfo[metadataName] = values[1]
+				else
+					resourceInfo[metadataName] = values
+				end
 			end
 
 			table.insert(info, resourceInfo)
