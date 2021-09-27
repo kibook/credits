@@ -1,0 +1,82 @@
+html, body {
+	background-color: #111;
+	padding: 0;
+	margin: 0;
+	font-family: Helvetica;
+}
+
+button {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: solid 1px white;
+	border-radius: 10px;
+	font-size: 2vh;
+}
+
+button:hover:enabled, button:focus:enabled {
+	background-color: rgba(128, 128, 255, 0.5);
+}
+
+button:active:enabled {
+	background-color: white;
+	color: black;
+}
+
+button:disabled {
+	color: #444;
+	border: solid 1px #444;
+}
+
+::-webkit-scrollbar {
+	background: black;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: white;
+}
+
+#credits {
+	display: flex;
+	flex-flow: column;
+	color: white;
+	font-size: 2vh;
+	padding: 1vh 1vw;
+	overflow: hidden;
+}
+
+#credits-title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 2.5vh;
+	padding-bottom: 0.75vh;
+}
+
+#credits-list {
+	overflow: auto;
+	flex-grow: 1;
+	padding: 0.75vh 0.5vw 0 0.5vw;
+}
+
+.credit {
+	color: #bbb;
+	padding: 0.3vh 0;
+	width: max-content;
+}
+
+.link {
+	color: #67b;
+	cursor: pointer;
+}
+
+.link:hover {
+	color: #b76;
+	text-decoration: underline;
+}
+
+.link:active {
+	color: #6b7;
+}
+
+#close {
+	margin-top: 0.5vh;
+}

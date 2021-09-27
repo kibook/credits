@@ -71,3 +71,14 @@ RegisterCommand("credits", function(source)
 		TriggerClientEvent("credits", source, resources)
 	end
 end, true)
+
+SetHttpHandler(exports.httpmanager:createHttpHandler{
+	routes = {
+		["^/data%.json$"] = function(req, res, helpers)
+			res.sendJson {
+				serverName = GetConvar("sv_projectName", GetConvar("sv_hostname", "Server")),
+				resourceInfo = getResourceInfo()
+			}
+		end
+	}
+})

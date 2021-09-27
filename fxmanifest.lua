@@ -6,6 +6,8 @@ author "kibukj"
 description "Displays information about resources on a FiveM or RedM server"
 repository "https://github.com/kibook/credits"
 
+dependency "httpmanager"
+
 files {
 	"ui/index.html",
 	"ui/style.css",
